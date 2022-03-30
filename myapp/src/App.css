@@ -15,10 +15,10 @@
   align-items: center;
   justify-content: center;
   font-size: 28px;
-  color: darkslategray;
-  border:  1px solid darkslategray;
+  color: rgb(218, 236, 236);
+  border:  3px solid rgb(218, 236, 236);
   border-radius: 20px;
-  background-color:rgb(151, 202, 202);
+  background-color:rgb(56, 194, 194);
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -27,7 +27,7 @@
 }
 
 .App-header {
-  background-color: darkslategray;
+  background-color: rgb(82, 145, 145);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
