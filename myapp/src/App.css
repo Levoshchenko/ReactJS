@@ -8,17 +8,33 @@
   pointer-events: none;
 }
 
-.Message {
-  height: 100px;
-  width: 540px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  color: rgb(218, 236, 236);
-  border:  3px solid rgb(218, 236, 236);
+.button {
+  height: 30px;
+  width: 130px;
+  font-size: 14px;
+  text-align: centr;
+  color:darkslategray;
+  background-color: aliceblue;
+  border: 1px solid darkslategrey;
   border-radius: 20px;
-  background-color:rgb(56, 194, 194);
+}
+.button:hover{
+  background-color: darkslategray;
+  color:aliceblue;
+}
+.input {
+  height: 30px;
+  width: 250px;
+  font-size: 14px;
+  text-align: center;
+  background-color: aliceblue;
+  border: 1px solid darkslategrey;
+  border-radius: 20px;
+  outline:none;
+}
+.input:hover{
+  color:darkslategrey;
+  border: 1px solid aliceblue;;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
