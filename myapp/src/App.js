@@ -1,15 +1,18 @@
 import './App.css';
 import React, {useEffect, useState} from 'react';
-import Message from './components/Message';
-import {AUTHOR} from "./constants/common";
+import Messages from './components/Messages';
+import {AUTHOR} from './constants/common';
+import {Fab } from '@mui/material';
+import ForwardToInboxOutlinedIcon from '@mui/icons-material/ForwardToInboxOutlined';
+import TextField from '@mui/material/FilledInput';
+import ChatList from './components/ChatList';
 
-
-function App() {
+function App(props) {
   const [messageList, setMessageList] = useState( []); //{text: ' ', author:' '}
-  
   const [value, setValue] = useState('');
+  const [list, setList] = useState([{}]);
+  const [focused, setIsFocused] = useState(true);
 
-  console.log('messageList----', messageList);
 
   const handleInput = (event) => {
     setValue(event.target.value);
@@ -17,42 +20,73 @@ function App() {
 
   const handlerClick = () => {
     if (value !== ''){
-      const newMessage = { text:value, author: AUTHOR.me};
-      setMessageList([...messageList, newMessage]);
+      const newMessages = { 
+        text:value, 
+        author: AUTHOR.me};
+        setMessageList([...(messageList || []), newMessages]);
+        setValue('');
+        setIsFocused(true);
     }
-  }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+        handlerClick()
+    }
+}
 
   useEffect( ()=>{
     let timer;
-    if (messageList.length>0 
+    if (messageList?.length>0 
       && messageList[messageList.length-1].author !== AUTHOR.bot){
-      timer = setInterval(()=>{
-        setMessageList([...messageList, newMessage])
+      timer = setTimeout(()=>{
+      setMessageList([...messageList, newMessages])
       }, 1500);
-        const newMessage = { text: 'Здравствуйте! Введите Ваше сообщение.', author: AUTHOR.bot}
+      const newMessages = { text: 'Здравствуйте! Введите Ваше сообщение.', author: AUTHOR.bot}
     }
     return ()=>{
       if(timer){
-        clearInterval(timer);
+        clearTimeout(timer);
       }
     }
   }, [messageList])
-  return (
-    <div className="App" >
-      <header className="App-header">
-        <h3>Список сообщений: </h3>
-        <br/>
-        {messageList.map(element => (<Message text = {element} />))}
-        <div>
-          <input className='input' 
-            placeholder={'Напиши сюда'} 
-            value = {value}
-            onChange = {handleInput}/>
-          <button className='button' 
-            onClick={handlerClick}>Нажми здесь</button>
-        </div>   
-      </header>
-    </div>
+    return (
+      <div className="App" >
+        <header className="App-header">
+          <div className="Chat">
+            <h4>Список чатов</h4>
+            {list[list.length - 1].hasOwnProperty('name') && (
+            <ChatList
+              chatAuthor={list[list.length - 1].id}
+              chatLastAuthor={messageList[messageList.length - 1].author}
+              chatLastText={messageList[messageList.length - 1].text}
+            />
+            )}
+          </div>
+          <h3>Список сообщений: </h3>
+          <br/>
+          <Messages messages = {messageList}/>
+
+          <div>
+            <TextField 
+              label="Outlined secondary" 
+              color="secondary" 
+              placeholder={'Напиши сюда'} 
+              value = {value}
+              autoFocus={true}
+              focused={focused}
+              onChange = {handleInput}
+              onKeyPress={handleKeyPress}/> 
+
+            <Fab onClick={handlerClick} 
+              color="secondary" 
+              aria-label="add">
+              <ForwardToInboxOutlinedIcon/>
+            </Fab>
+
+          </div>   
+        </header>
+      </div>
   );
 }
 
