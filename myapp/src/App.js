@@ -11,6 +11,7 @@ function App(props) {
   const [messageList, setMessageList] = useState( []); //{text: ' ', author:' '}
   const [value, setValue] = useState('');
   const [list, setList] = useState([{}]);
+  const [focused, setIsFocused] = useState(true);
 
 
   const handleInput = (event) => {
@@ -24,6 +25,7 @@ function App(props) {
         author: AUTHOR.me};
         setMessageList([...(messageList || []), newMessages]);
         setValue('');
+        setIsFocused(true);
     }
   };
 
@@ -72,6 +74,7 @@ function App(props) {
               placeholder={'Напиши сюда'} 
               value = {value}
               autoFocus={true}
+              focused={focused}
               onChange = {handleInput}
               onKeyPress={handleKeyPress}/> 
 
