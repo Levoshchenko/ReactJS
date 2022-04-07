@@ -17,7 +17,7 @@
 .App-header {
   background-color: rgb(229, 208, 231);
   min-height: 100vh;
-  display: inline;
+  display:flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -29,16 +29,35 @@
   color: #e9c1f8;
 }
 
-.Chat {
-  position: absolute;
-  left: 0;
-  top: 0;
+.menu {
+  display: flex;
 }
 
-.Chat h3 {
-  position: relative;
-  text-align: start;
+.menu-list {
+    list-style: none;
+    margin: 0 20px;
+  }
+
+.wrapper {
+  display: flex;
+  
 }
+
+.messengerPlace {
+  border: 1px solid #520070;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #520070;
+}
+a:hover {
+  color:#bb45ea;
+  text-decoration: underline;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

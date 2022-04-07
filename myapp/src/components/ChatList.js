@@ -1,45 +1,42 @@
-import * as React from 'react'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemText from '@mui/material/ListItemText'
-import ListItemAvatar from '@mui/material/ListItemAvatar'
+import { Link } from 'react-router-dom';
+import { Typography, List } from '@mui/material';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+import IconButton from '@mui/material/IconButton';
+import ListItemText from '@mui/material/ListItemText';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
-const ChatList = ({ chatAuthor, chatText, chatLastAuthor, chatLastText }) => {
-    
+const ChatList =({chats}) => {
+
     return (
-        
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-            <ListItem>
-                <ListItemAvatar>
-                    <Avatar>
-                        <ImageIcon />
-                    </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary="Photos" />
-            </ListItem>
-            <ListItem>
-                <ListItemAvatar>
-                    <Avatar>
-                        <WorkIcon />
-                    </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary="Work" />
-            </ListItem>
-            <ListItem>
-                <ListItemAvatar>
-                    <Avatar>
-                        <BeachAccessIcon />
-                    </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary="Vacation"  />
-            </ListItem>
-        </List>
-    );
-}
+        <div>
+            <Typography sx={{ mt: 4, mb: 2 }}   variant="h6" component="div">
+                Список чатов
+            </Typography>
+            <List>
+                {Object.keys(chats).map((chat, index) => (
+                    <Link to={ `/chats/${chat}` } key={index}>
+                        <ListItem
+                            key ={index}
+                            secondaryAction={
+                                <IconButton edge="end" aria-label="delete">
+                                    <DeleteIcon />
+                                </IconButton>
+                            }
+                        >
+                        <ListItemAvatar>
+                            <Avatar/>
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary={chats[chat].name}
+                        />
+                        </ListItem>
+                    </Link>
+                ))}
+            </List>
+        </div>
+    )};
 
-export default ChatList
+export default ChatList;
