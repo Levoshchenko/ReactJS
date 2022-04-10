@@ -15,7 +15,7 @@
 }
 
 .App-header {
-  background-color: rgb(229, 208, 231);
+  background-color: rgb(253, 227, 255);
   min-height: 100vh;
   display:flex;
   flex-direction: column;
@@ -58,6 +58,38 @@ a:hover {
   text-decoration: underline;
 }
 
+.profile_name {
+  display: inline-block;
+  text-align:center;
+  justify-content: center;
+  display:flex;
+  flex-direction:row
+  ;
+}
+.checkbox {
+  height: 25px;
+  width: 25px;
+  border: 1px solid #520070;
+}
+
+.button {
+  border-radius: 20px;
+  height: 30px;
+  width: 130px;
+  text-align:center;
+  border: 1px solid #520070;
+  font-size: 16px;
+  color: #520070;
+  background-color: #f6e0fe;
+}
+
+.button:hover {
+  color:#f6e0fe;
+  background-color: #520070;
+}
+.blockquote {
+  height: 10px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
