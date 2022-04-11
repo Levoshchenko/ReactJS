@@ -29,11 +29,12 @@ const ControlPanel = ({addMessage}) => {
         setValue(event.target.value);
     };
 
-    const onKeyDown = (event) => {
+
+    /*function onKeyDown(event) {
         if (event.key === 'Enter') {
-        handlerClick()
+            handlerClick();
         };
-    };
+    }*/
 
     useEffect( ( ) => {
         inputRef.current?.focus();
@@ -65,7 +66,7 @@ const ControlPanel = ({addMessage}) => {
                 placeholder={'Напиши сюда'} 
                 value = {value}
                 onChange = {handleInput}
-                onKeyDown={onKeyDown} 
+                //onKeyDown={onKeyDown} 
             /> 
 
             <Fab
@@ -73,6 +74,7 @@ const ControlPanel = ({addMessage}) => {
                     backgroundColor :theme.palette.secondary.main
                 } }
                 onClick={handlerClick} 
+
                 color="secondary" 
                 aria-label="add">
                 <ForwardToInboxOutlinedIcon/>

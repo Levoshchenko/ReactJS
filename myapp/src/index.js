@@ -4,7 +4,9 @@ import './index.css';
 import App from './App';
 import {createTheme, ThemeProvider} from '@mui/material';
 import {purple} from '@mui/material/colors';
-
+import {BrowserRouter} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const currentName = "Kristina";
 
@@ -13,19 +15,19 @@ const theme = createTheme({
     mode: 'light',
   },
   status: {
-    danger: purple[200],
+    danger: purple[100],
   },
-
 });
-
-
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-    <App name={currentName} topPosition="100px"/>
-</ThemeProvider>
-    
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <App name={currentName} topPosition="100px"/>
+        </BrowserRouter>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
