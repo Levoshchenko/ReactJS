@@ -1,7 +1,7 @@
-import { TOGGLE_NAME } from "./action"
+import { TOGGLE_NAME, UPDATE_NAME } from "./action"
 
 const initialState = {
-    showName: false,
+    showName: true,
     name: 'Кристина'
 };
 
@@ -12,6 +12,12 @@ const profileReducer =( state = initialState, action) => {
                 ...state,
                 showName: !state.showName
             };
+
+            case UPDATE_NAME:
+                return{
+                    ...state,
+                    name: action.payload
+                }
             
         default:
             return state;

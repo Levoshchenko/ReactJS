@@ -8,7 +8,8 @@ import {AUTHOR} from '../constants/common';
 const initialChats = {
     id1: {
         name: 'Чат 1',
-        messages: [{text: 'Сообщения из чата 1', author: AUTHOR.bot}]
+        messages: [
+            {text: 'Сообщения из чата 1', author: AUTHOR.bot}]
     },
     id2: {
         name: 'Чат 2',

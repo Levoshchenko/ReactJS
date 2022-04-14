@@ -1,29 +1,41 @@
-import { useCallback} from "react";
+import { TextField } from "@mui/material";
+import { useCallback, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeVisible } from "../store/profile/action";
+import { changeVisible, updateName } from "../store/profile/action";
 
 const Profile = () => {
-    const {showName, name} = useSelector((state)=>state);
+    const {showName, name} = useSelector((state)=> state.profile);
     const dispatch = useDispatch();
+    const [value, setValue] = useState(name);
+
 
     const setShowName= useCallback( () => {
         dispatch(changeVisible);
     }, [dispatch]);
 
+    const handleInput = (e) => {
+        setValue(e.target.value);
+    };
+
+    const saveName = () => {
+        dispatch(updateName(value));
+    };
     return (
         <div > 
             <h1>Профиль</h1> 
             <div className='profile_name'>
-            <input 
-                className= 'checkbox'
-                type ='checkbox' 
-                checked={showName} 
-                value = {showName} 
-                onChange={setShowName} 
+            <button className="button" onClick={setShowName}>Показать имя
+            </button>
+            <blockquote>{showName && <h3>Текущее имя: {name}</h3>}</blockquote>
+            <TextField
+                name = 'name'
+                label = 'name'
+                placeholder='Введите Ваше имя'
+                value = {value}
+                onChange = {handleInput}
             />
-            <span> Показать имя? </span>
+            <button className="button" onClick={saveName}>Сохранить</button>
             </div>
-            <blockquote className="blockquote">{showName && <h3>{name}</h3>}</blockquote>
         </div>
     );
 };
