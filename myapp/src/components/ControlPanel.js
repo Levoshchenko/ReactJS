@@ -75,7 +75,6 @@ const ControlPanel = () => {
                     backgroundColor :theme.palette.secondary.main
                 } }
                 onClick={handlerClick} 
-
                 color="secondary" 
                 aria-label="add">
                 <ForwardToInboxOutlinedIcon/>

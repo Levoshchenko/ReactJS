@@ -15,22 +15,18 @@
 }
 
 .App-header {
-  background-color: rgb(253, 227, 255);
+  background-color: rgb(86, 86, 86);
   min-height: 100vh;
   display:flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: rgb(74, 73, 73);
-}
-
-.App-link {
-  color: #e9c1f8;
 }
 
 .menu {
   display: flex;
+  margin-top: 30px;
 }
 
 .menu-list {
@@ -43,35 +39,14 @@
   
 }
 
-.messengerPlace {
-  border: 1px solid #520070;
-  border-radius: 15px;
-  padding: 10px;
-}
-
 a {
+  color: rgb(254, 254, 106);
   text-decoration: none;
-  color: #520070;
-}
-a:hover {
-  color:#bb45ea;
-  text-decoration: underline;
+
 }
 
-.button {
-  border-radius: 20px;
-  height: 30px;
-  width: 130px;
-  text-align:center;
-  border: 1px solid #520070;
-  font-size: 16px;
-  color: #520070;
-  background-color: #f6e0fe;
-}
-
-.button:hover {
-  color:#f6e0fe;
-  background-color: #520070;
+a:hover{
+  color: black;
 }
 
 @keyframes App-logo-spin {
