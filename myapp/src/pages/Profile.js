@@ -23,7 +23,7 @@ const Profile = () => {
     };
     return (
         <div > 
-            <h1>Профиль</h1> 
+            <h1 className="page_title">Профиль</h1> 
             <div className='profile_name'>
             <Button onClick={setShowName}> Показать имя
             </Button>
@@ -35,7 +35,7 @@ const Profile = () => {
                 value = {value}
                 onChange = {handleInput}
             />
-            <Button className="button" onClick={saveName}>Сохранить</Button>
+            <Button onClick={saveName}>Сохранить</Button>
             </div>
         </div>
     );

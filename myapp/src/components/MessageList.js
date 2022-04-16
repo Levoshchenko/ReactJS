@@ -25,19 +25,19 @@ const MessageList = () => {
 
     return (
         <>
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+            <List className="messages" sx={{ width: '100%', maxWidth: 360 }}>
             {messages.map((element) => (
-                <div className="messages" key = {element.id}>
-                    <ListItem alignItems="flex-start">
-                        <ListItemAvatar>
-                            <Avatar alt="Remy Sharp">
+                <div  key = {element.id}>
+                    <ListItem  alignItems="flex-start">
+                        <ListItemAvatar >
+                            <Avatar  alt="Remy Sharp">
                                 {isAuthorBot(element.author) ? (<Android/>
                                 ) :( 
                                 <AccountCircle/>
                                 )}
                             </ Avatar>
                         </ListItemAvatar>
-                    <ListItemText
+                    <ListItemText 
                         primary = {isAuthorBot(element.author) ? AUTHOR.bot : name}
                         secondary={
                                 <Typography

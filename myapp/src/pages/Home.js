@@ -1,7 +1,7 @@
 const Home = () => {
     return (
         <div >
-            <p >Главная</p>
+            <p className ="page_title" >Главная</p>
         </div>);
 };
 export default Home;
