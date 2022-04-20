@@ -4,6 +4,7 @@ import Home from "./Home";
 import Profile from "./Profile";
 import { useState } from 'react';
 import {AUTHOR} from '../constants/common';
+import Gists from "./Gists";
 
 const initialChats = {
     id1: {
@@ -38,11 +39,15 @@ const Router = () => {
             <li className="menu-list">
                 <Link to ='/chats'>Чаты</Link>
             </li>
+            <li className="gists">
+                <Link to ='/gists'>Gists</Link>
+            </li>
         </ul>
 
         <Routes>
             <Route path="/" exact element={<Home />}/>
             <Route path="/profile" element={<Profile/>}/>
+            <Route path="/gists" element={<Gists/>}/>
             <Route path="/chats">
                 <Route index element={<Chats chats={chats} />}/>
                 <Route path=":chatId" element={<Chats chats={chats} addMessage={addMessage}/>}/>
