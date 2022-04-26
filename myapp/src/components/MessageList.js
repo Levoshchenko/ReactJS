@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useParams } from 'react-router-dom';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -8,26 +9,30 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { AccountCircle, Android } from '@mui/icons-material';
 import {AUTHOR} from '../constants/common';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getMessagesByChatIdWithFB } from '../middlewares/middleware';
 
 const MessageList = () => {
     const allMessages =useSelector((state) => state.messages.messageList);
     const {name} = useSelector((state) => state.profile);
     let {chatId} = useParams();
-
-    if (!allMessages[chatId]) return null;
-
+    const dispatch = useDispatch();
     const messages = allMessages[chatId]; 
 
     const isAuthorBot = (author) => {
         return author === AUTHOR.bot;
     };
 
+    useEffect(() => {
+            dispatch(getMessagesByChatIdWithFB(chatId));
+        }, [chatId]);
+
     return (
         <>
             <List className="messages" sx={{ width: '100%', maxWidth: 360 }}>
-            {messages.map((element) => (
-                <div  key = {element.id}>
+            {messages?.map((element, index) => (
+                <div  key = {index}>
                     <ListItem  alignItems="flex-start">
                         <ListItemAvatar >
                             <Avatar  alt="Remy Sharp">
