@@ -49,6 +49,11 @@
     ]
   },
   "devDependencies": {
-    "prettier": "2.6.2"
+    "prettier": "2.6.2",
+    "jest-watch-typeahead": "0.6.5"
+  },
+
+  "jest": {
+    "clearMocks": true
   }
 }
