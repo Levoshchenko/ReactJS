@@ -4,7 +4,7 @@ import TextField from '@mui/material/FilledInput';
 import {useState, useRef, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {addMessageWithThunk} from '../store/messages/actions';
+import {addMessageWithFB} from '../middlewares/middleware';
 
 const ControlPanel = () => {
     let {chatId} = useParams();
@@ -26,11 +26,13 @@ const ControlPanel = () => {
             const newMessage = { 
                 text: value, 
                 author: author};
-                dispatch(addMessageWithThunk(chatId, newMessage));
+                dispatch(addMessageWithFB(chatId, newMessage));
                 setValue('');
                 inputRef.current?.focus();
         }
     };
+
+
 
     useEffect( () => {
         inputRef.current?.focus();

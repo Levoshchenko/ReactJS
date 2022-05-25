@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {CircularProgress, createTheme, ThemeProvider} from '@mui/material';
-import {orange, yellow} from '@mui/material/colors';
+import { yellow} from '@mui/material/colors';
 import {BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import persistore, {store} from './store';

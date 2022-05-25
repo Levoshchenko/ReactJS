@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Link, useParams } from 'react-router-dom';
 import { Typography, List, Button, Dialog, DialogTitle, TextField } from '@mui/material';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -7,9 +8,9 @@ import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
-import {useState} from 'react';
-import { addChat } from '../store/chats/actions';
+import {useEffect, useState} from 'react';
 import {Paper} from '@mui/material';
+import { addChatWithFB, deleteChatWithFB, initTrackerWithFB } from '../middlewares/middleware';
 
 
 
@@ -18,6 +19,7 @@ const ChatList =() => {
     const [visible, setVisible] = useState(false);
     const [chatName, setChatName] = useState('');
     const dispatch = useDispatch();
+    const { chatId } = useParams();
 
     const handleChatName = (e) => {
         setChatName(e.target.value);
@@ -32,10 +34,18 @@ const ChatList =() => {
     };
 
     const handleSave = () => {
-        dispatch(addChat(chatName));
+        dispatch(addChatWithFB(chatName));
         setChatName('');
         handleClose();
     };
+
+    const deleteChat =(id) => {
+        dispatch(deleteChatWithFB(id));
+    };
+
+    useEffect( () => {
+        dispatch(initTrackerWithFB());
+    }, [chatId]);
     
     return (
         <div>
@@ -47,7 +57,7 @@ const ChatList =() => {
                     <Link to={ `/chats/${chat.id}` } key={chat.id}>
                         <ListItem
                             secondaryAction={
-                                <IconButton edge="end" aria-label="delete">
+                                <IconButton edge="end" aria-label="delete" onClick={()=> deleteChat(chat.id)}>
                                     <DeleteIcon />
                                 </IconButton>
                             }
